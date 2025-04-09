@@ -4,27 +4,24 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center bg-black min-h-screen">
       {/* Header / Navigation */}
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-sm bg-black bg-opacity-90">
-        <nav className="container mx-auto flex items-center justify-between p-4">
-          <h1 className="text-2xl font-extralight text-white uppercase tracking-widest">8Y-FUTURES</h1>
-          <ul className="flex space-x-8">
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black bg-opacity-80">
+        <nav className="container mx-auto flex items-center justify-between py-4 px-6">
+          <h1 className="text-2xl font-light text-white uppercase tracking-widest">
+            8Y-FUTURES
+          </h1>
+          <ul className="flex space-x-10">
             <li>
-              <a href="#about" className="text-white hover:text-gray-400 transition">
+              <a href="#about" className="text-white hover:text-gray-300 transition duration-200">
                 About
               </a>
             </li>
             <li>
-              <a href="#services" className="text-white hover:text-gray-400 transition">
+              <a href="#services" className="text-white hover:text-gray-300 transition duration-200">
                 Services
               </a>
             </li>
             <li>
-              <a href="#performance" className="text-white hover:text-gray-400 transition">
-                Performance
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="text-white hover:text-gray-400 transition">
+              <a href="#contact" className="text-white hover:text-gray-300 transition duration-200">
                 Contact
               </a>
             </li>
