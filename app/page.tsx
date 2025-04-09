@@ -33,21 +33,24 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center w-full h-screen">
-        {/* Plain background for minimalism */}
+      <section className="relative flex flex-col items-center justify-center w-full h-screen">
         <div className="absolute inset-0 bg-black"></div>
         <div className="relative z-10 text-center px-4">
           <h2 className="text-6xl md:text-8xl font-light text-white mb-4 uppercase tracking-widest">
             8Y-FUTURES
           </h2>
-          <p className="text-lg md:text-2xl text-gray-400 mb-8">
-            Institutional-grade trading. Futuristic investments.
+          <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
+            At 8Y-FUTURES, we’re not just trading; we’re engineering tomorrow’s energy paradigm. We foresee, predict, and adapt—transforming challenges into breakthrough opportunities. Even in loss, we uncover the seeds of victory.
+            <br /><br />
+            Our capital fuels resilient energy infrastructures, not fleeting market schemes. With institutional acumen and cutting-edge, data-driven intelligence, we reduce risk and amplify impact. Your investment propels sustainable, transformative energy initiatives.
+            <br /><br />
+            Welcome to 8Y-FUTURES—where vision converges with precision, and the future is now.
           </p>
           <a
             href="#contact"
-            className="px-8 py-4 border border-white text-white text-lg uppercase tracking-wide rounded hover:bg-white hover:text-black transition"
+            className="px-8 py-4 border border-white text-white uppercase tracking-wide rounded hover:bg-white hover:text-black transition"
           >
-            Invest Now
+            Connect
           </a>
         </div>
       </section>
@@ -58,7 +61,7 @@ export default function Home() {
           About
         </h2>
         <p className="text-center text-gray-400 text-xl max-w-3xl mx-auto">
-          At 8Y-FUTURES, we merge technology and finance to create an investment platform that redefines trading with futuristic innovation.
+          We see the future, we predict, we react, and we adapt. Your capital accelerates sustainable energy projects while our institutional-grade insights drive precision trades in an ever-evolving market. In our world, even losses drive us toward winning.
         </p>
       </section>
 
