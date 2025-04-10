@@ -1,7 +1,40 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  // States for Contact Form
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setStatus("Message sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("Something went wrong. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setStatus("Error sending message.");
+    }
+  };
+
   return (
     <main className="flex flex-col items-center justify-center bg-black min-h-screen">
       {/* Header / Navigation */}
@@ -110,28 +143,37 @@ export default function Home() {
           <h2 className="text-4xl font-light text-center text-white uppercase tracking-wide mb-8">
             Contact
           </h2>
-          <form className="max-w-lg mx-auto space-y-4">
+          <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full p-3 bg-black border border-gray-400 text-white rounded placeholder-gray-400 focus:outline-none"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full p-4 bg-black border border-gray-400 text-white rounded placeholder-gray-400 focus:outline-none focus:border-gray-300 transition"
             />
             <input
               type="email"
               placeholder="Your Email"
-              className="w-full p-3 bg-black border border-gray-400 text-white rounded placeholder-gray-400 focus:outline-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-4 bg-black border border-gray-400 text-white rounded placeholder-gray-400 focus:outline-none focus:border-gray-300 transition"
             />
             <textarea
               placeholder="Your Message"
-              rows={4}
-              className="w-full p-3 bg-black border border-gray-400 text-white rounded placeholder-gray-400 focus:outline-none"
+              rows={5}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="w-full p-4 bg-black border border-gray-400 text-white rounded placeholder-gray-400 focus:outline-none focus:border-gray-300 transition"
             ></textarea>
             <button
               type="submit"
-              className="w-full py-3 border border-white text-white uppercase tracking-wide rounded hover:bg-white hover:text-black transition"
+              className="w-full py-4 border border-white text-white uppercase tracking-wide rounded hover:bg-white hover:text-black transition"
             >
               Send
             </button>
+            {status && (
+              <p className="text-center text-gray-400 mt-4">{status}</p>
+            )}
           </form>
         </div>
       </section>
