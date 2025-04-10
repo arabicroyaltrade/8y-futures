@@ -37,11 +37,7 @@ export default function Home() {
             8Y-FUTURES
           </h2>
           <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
-            At 8Y-FUTURES, we’re not just trading; we’re engineering tomorrow’s energy paradigm. We foresee, predict, and adapt—transforming challenges into breakthrough opportunities. Even in loss, we uncover the seeds of victory.
-            <br /><br />
-            Our capital fuels resilient energy infrastructures, not fleeting market schemes. With institutional acumen and cutting-edge, data-driven intelligence, we reduce risk and amplify impact. Your investment propels sustainable, transformative energy initiatives.
-            <br /><br />
-            Welcome to 8Y-FUTURES—where vision converges with precision, and the future is now.
+            We’re engineering tomorrow’s energy paradigm with precision and vision.
           </p>
           <a
             href="#contact"
@@ -58,7 +54,7 @@ export default function Home() {
           About
         </h2>
         <p className="text-center text-gray-400 text-xl max-w-3xl mx-auto">
-          We see the future, we predict, we react, and we adapt. Your capital accelerates sustainable energy projects while our institutional-grade insights drive precision trades in an ever-evolving market. In our world, even losses drive us toward winning.
+          Your capital accelerates sustainable energy projects. With institutional-grade insights, we drive precision trades in an evolving market. Losses become stepping stones to success.
         </p>
       </section>
 
