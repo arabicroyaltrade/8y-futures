@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -39,12 +40,12 @@ export default function Home() {
           <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
             Pioneering the next era of energy trading.
           </p>
-          <a
-            href="#contact"
+          <Link
+            href="/connect"
             className="px-8 py-4 border border-white text-white uppercase tracking-wide rounded hover:bg-white hover:text-black transition"
           >
             Connect
-          </a>
+          </Link>
         </div>
       </section>
 
