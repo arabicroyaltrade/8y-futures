@@ -1,7 +1,7 @@
 /// <reference types="node" />
 /// <reference types="nodemailer" />
 
-// Force this API route to use the Node.js runtime (required for nodemailer)
+// Force this API route to run with Node.js runtime so Node globals (like process) are available.
 export const runtime = "nodejs";
 
 import nodemailer from "nodemailer";
@@ -12,34 +12,38 @@ export async function POST(req: Request) {
 
     // Basic input validation
     if (!name || !email || !message) {
+      console.error("Validation error: Missing fields", { name, email, message });
       return new Response(
         JSON.stringify({ error: "All fields (name, email, message) are required." }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
-    // Basic email format validation
+    // Validate email format using a basic regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      console.error("Validation error: Invalid email format", { email });
       return new Response(
         JSON.stringify({ error: "Invalid email format." }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
-    // For testing: create a test account using Ethereal.
-    // For production, replace this with your own SMTP credentials.
+    // For testing purposes: create an Ethereal test account.
+    // For production, please set your SMTP credentials in environment variables.
     const testAccount = await nodemailer.createTestAccount();
+
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || "smtp.ethereal.email",
       port: Number(process.env.SMTP_PORT) || 587,
-      secure: process.env.SMTP_SECURE === "true" ? true : false, // true for 465, false for others
+      secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
       auth: {
         user: process.env.SMTP_USER || testAccount.user,
         pass: process.env.SMTP_PASS || testAccount.pass,
       },
     });
 
+    // Prepare the email options
     const mailOptions = {
       from: process.env.SMTP_FROM || "no-reply@example.com",
       to: "arabicroyaltrade@proton.me", // Destination email address
@@ -47,16 +51,25 @@ export async function POST(req: Request) {
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
 
+    // Attempt to send the email
     const info = await transporter.sendMail(mailOptions);
+    
+    // Log information for debugging and, if using Ethereal, show the preview URL
     console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    const previewUrl = nodemailer.getTestMessageUrl(info);
+    if (previewUrl) {
+      console.log("Preview URL: %s", previewUrl);
+    }
 
     return new Response(
-      JSON.stringify({ message: "Email sent successfully", previewUrl: nodemailer.getTestMessageUrl(info) }),
+      JSON.stringify({ message: "Email sent successfully", previewUrl }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
-    console.error("Error sending email: ", error);
+    console.error("Error sending email:", {
+      message: error.message,
+      stack: error.stack,
+    });
     return new Response(
       JSON.stringify({ error: "Failed to send email. Please try again later." }),
       { status: 500, headers: { "Content-Type": "application/json" } }
