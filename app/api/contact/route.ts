@@ -66,10 +66,8 @@ export async function POST(req: Request) {
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
-    console.error("Error sending email:", {
-      message: error.message,
-      stack: error.stack,
-    });
+    const errMsg = error instanceof Error ? error.message : String(error);
+    console.error("Error sending email:", errMsg);
     return new Response(
       JSON.stringify({ error: "Failed to send email. Please try again later." }),
       { status: 500, headers: { "Content-Type": "application/json" } }
