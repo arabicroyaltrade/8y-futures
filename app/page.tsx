@@ -54,7 +54,7 @@ export default function Home() {
           About
         </h2>
         <p className="text-center text-gray-400 text-xl max-w-3xl mx-auto">
-          Your capital accelerates sustainable energy projects. With institutional-grade insights, we drive precision trades in an evolving market. Losses become stepping stones to success.
+          Your capital fuels the growth of sustainable energy projects. Leveraging institutional-grade insights, we execute precision trades that unlock exceptional growth and lasting value, driving a sustainable future.
         </p>
       </section>
 
