@@ -37,7 +37,7 @@ export default function Home() {
             8Y-FUTURES
           </h2>
           <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
-            We’re engineering tomorrow’s energy paradigm with precision and vision.
+            Pioneering the next era of energy trading.
           </p>
           <a
             href="#contact"
