@@ -29,24 +29,20 @@ export async function POST(req: Request) {
       );
     }
 
-    // For testing purposes: create an Ethereal test account.
-    // For production, please set your SMTP credentials in environment variables.
-    const testAccount = await nodemailer.createTestAccount();
-
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.ethereal.email",
-      port: Number(process.env.SMTP_PORT) || 587,
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
       secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
       auth: {
-        user: process.env.SMTP_USER || testAccount.user,
-        pass: process.env.SMTP_PASS || testAccount.pass,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
     // Prepare the email options
     const mailOptions = {
-      from: process.env.SMTP_FROM || "no-reply@example.com",
-      to: "arabicroyaltrade@proton.me", // Destination email address
+      from: process.env.SMTP_FROM || "8y-futures@proton.me",
+      to: "8y-futures@proton.me", // Destination email address
       subject: "New Contact Form Submission",
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
